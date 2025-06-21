@@ -2,11 +2,15 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
+using SimplyToDo.Data.Entities;
 
 namespace SimplyToDo.Data;
 
 internal class AppDbContext : IdentityDbContext<AppUser>
 {
+    public DbSet<ToDoList> ToDoLists { get; set; }
+    public DbSet<ToDoItem> ToDoItems { get; set; }
+
     public AppDbContext(DbContextOptions options) : base(options)
     {
     }
