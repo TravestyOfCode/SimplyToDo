@@ -115,7 +115,7 @@ internal class AccountManager(SignInManager<AppUser> _signInManager, ILogger<Acc
 
         // TODO: Best way to 'configure' the callback URL for registering? I don't think the Data project
         // should know about this and it should be configured when adding data services?
-        var callbackUrl = $"/Identity/Account/ConfirmEmail&userId={userId}&code={code}";
+        var callbackUrl = $"/Account/ConfirmEmail?userId={userId}&code={code}";
 
         // TODO: Configure to use an actual email sender to send emails. For now, we'll just display in the
         // console.
