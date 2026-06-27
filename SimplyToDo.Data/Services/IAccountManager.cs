@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
 
@@ -46,6 +47,13 @@ public interface IAccountManager
     /// <param name="code">The code that was sent to the account's email address.</param>
     /// <returns>An <see cref="IdentityResult"/> that indicates if the sent code matches the provided code.</returns>
     public Task<IdentityResult> ConfirmEmail(string userId, string code);
+
+    /// <summary>
+    /// Returns true if the principal has an identity with the application cookie identity.
+    /// </summary>
+    /// <param name="principal">The <see cref="ClaimsPrincipal"/> instance.</param>
+    /// <returns>True if the user is logged in with identity.</returns>
+    public bool IsSignedIn(ClaimsPrincipal principal);
 }
 
 internal class AccountManager(SignInManager<AppUser> _signInManager, IEmailSender _emailSender, ILogger<AccountManager> _logger) : IAccountManager
@@ -94,6 +102,8 @@ internal class AccountManager(SignInManager<AppUser> _signInManager, IEmailSende
         code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
         return await _signInManager.UserManager.ConfirmEmailAsync(user, code);
     }
+
+    public bool IsSignedIn(ClaimsPrincipal principal) => _signInManager.IsSignedIn(principal);
     #endregion
 
     #region // PRIVATE FUNCTIONS //////////////////////////////////////////////////////
