@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37012.4 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplyToDo.Web", "SimplyToDo.Web\SimplyToDo.Web.csproj", "{9859626D-41F5-4B6A-A67C-D5825969BE07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplyToDo.Data", "SimplyToDo.Data\SimplyToDo.Data.csproj", "{68DA0D87-11E5-4DB6-B513-530DC7502944}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9859626D-41F5-4B6A-A67C-D5825969BE07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9859626D-41F5-4B6A-A67C-D5825969BE07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9859626D-41F5-4B6A-A67C-D5825969BE07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9859626D-41F5-4B6A-A67C-D5825969BE07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68DA0D87-11E5-4DB6-B513-530DC7502944}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68DA0D87-11E5-4DB6-B513-530DC7502944}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68DA0D87-11E5-4DB6-B513-530DC7502944}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68DA0D87-11E5-4DB6-B513-530DC7502944}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {34A52EFF-3311-42D6-B602-211388E97615}
+	EndGlobalSection
+EndGlobal
