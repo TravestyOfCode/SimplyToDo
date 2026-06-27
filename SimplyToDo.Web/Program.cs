@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SimplyToDo.Data;
 
 namespace SimplyToDo.Web
 {
@@ -14,6 +15,8 @@ namespace SimplyToDo.Web
 
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+            builder.Services.AddDataServices(connectionString);
 
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
