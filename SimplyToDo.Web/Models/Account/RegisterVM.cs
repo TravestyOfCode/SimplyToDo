@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 
-namespace SimplyToDo.Web.Areas.Identity.Models.Account;
+namespace SimplyToDo.Web.Models.Account;
 
 public class RegisterVM
 {

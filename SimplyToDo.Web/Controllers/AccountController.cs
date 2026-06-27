@@ -3,11 +3,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SimplyToDo.Data.Services;
-using SimplyToDo.Web.Areas.Identity.Models.Account;
+using SimplyToDo.Web.Models.Account;
 
-namespace SimplyToDo.Web.Areas.Identity.Controllers;
+namespace SimplyToDo.Web.Controllers;
 
-[Area("Identity")]
 public class AccountController(IAccountManager _accountManager, ILogger<AccountController> _logger) : Controller
 {
     [HttpGet]
