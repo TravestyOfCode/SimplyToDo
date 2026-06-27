@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using SimplyToDo.Data.Services;
 
 namespace SimplyToDo.Data;
 
@@ -22,6 +23,8 @@ public static class DataSetupService
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<AppDbContext>()
             .AddDefaultTokenProviders(); // Not sure if this is needed or included with AddDefaultIdentity
+
+        services.AddScoped<IAccountManager, AccountManager>();
 
         return services;
     }
