@@ -16,13 +16,13 @@ public static class DataSetupService
             options.UseSqlite(connectionString);
         });
 
-        services.AddDefaultIdentity<AppUser>(options =>
+        services.AddIdentity<AppUser, IdentityRole>(options =>
         {
             options.SignIn.RequireConfirmedAccount = true;
         })
-            .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<AppDbContext>()
-            .AddDefaultTokenProviders(); // Not sure if this is needed or included with AddDefaultIdentity
+            .AddDefaultTokenProviders()
+            .AddSignInManager();
 
         services.AddScoped<IAccountManager, AccountManager>();
 
