@@ -46,11 +46,14 @@ namespace SimplyToDo.Web
 
             app.UseAuthorization();
 
+            app.MapAreaControllerRoute(
+                name: "IdentityArea",
+                areaName: "Identity",
+                pattern: "{area:exists}/{controller}/{action=Index}");
+
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-
-            app.MapRazorPages();
 
             app.Run();
         }
