@@ -85,6 +85,7 @@ public class Result<T> : Result
     }
 
     public static Result<T> Ok(T value) => new(value);
+    public static Result<T> Error() => new(default, false);
     public static Result<T> Error(string error) => Error(string.Empty, error);
     public new static Result<T> Error(string property, string error)
     {
