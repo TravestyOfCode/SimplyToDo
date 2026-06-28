@@ -10,6 +10,8 @@ internal class AppDbContext : IdentityDbContext<AppUser>
 {
     public DbSet<ToDoList> ToDoLists { get; set; }
     public DbSet<ToDoTask> ToDoTasks { get; set; }
+    public DbSet<SharedToDoList> SharedToDoLists { get; set; }
+    public DbSet<SharedToDoTask> SharedToDoTasks { get; set; }
 
     public AppDbContext(DbContextOptions options) : base(options)
     {
