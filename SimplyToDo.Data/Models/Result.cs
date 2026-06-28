@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel.DataAnnotations;
 
 namespace SimplyToDo.Data.Models;
 
@@ -91,6 +92,19 @@ public class Result<T> : Result
     {
         var result = new Result<T>(default, false);
         result.AddError(property, error);
+        return result;
+    }
+    public static Result<T> Error(IEnumerable<ValidationResult> errors)
+    {
+        var result = new Result<T>(default, false);
+        foreach (var error in errors)
+        {
+            foreach (var member in error.MemberNames)
+            {
+                result.AddError(member, error.ErrorMessage ?? "Invalid data.");
+            }
+        }
+
         return result;
     }
 }
