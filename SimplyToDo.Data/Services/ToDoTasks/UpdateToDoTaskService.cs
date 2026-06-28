@@ -7,6 +7,9 @@ namespace SimplyToDo.Data.Services.ToDoTasks;
 
 internal class UpdateToDoTaskService(Entities.AppDbContext _dbContext, PropertyValidator _propValidator, IUserAccessor _userAccessor, ILogger<UpdateToDoTaskService> _logger) : IUpdateToDoTaskService
 {
+    // TODO: Is this function doing too much? Should there be separate services for property validation,
+    // rules validation, and business logic? How best to implement and allow passing context so we don't
+    // query the DB multiple times?
     public async Task<Result<ToDoTask>> Save(UpdateToDoTask request, CancellationToken cancellationToken)
     {
         try
@@ -35,12 +38,42 @@ internal class UpdateToDoTaskService(Entities.AppDbContext _dbContext, PropertyV
                 return Result<ToDoTask>.Error("The requested task was not found.");
             }
 
-            // Check that the current user is allowed to make the requested changes
-            // For now, we only have to make sure the associated list is owned by the user.
-            // Later, a task may be shared with other users, which will be a separate table lookup.
+            // If the current user is not the owner, check if they have shared permission to perform the change.
+            // TODO: Is there a better way to check these permissions? Worry that if future properties get added,
+            // we may miss check if they have changed.
             if (!currentUser.Equals(entity.ToDoList?.OwnerId))
             {
-                return Result<ToDoTask>.Error("You are not allowed to make changes to this task.");
+                var shared = await _dbContext.SharedToDoTasks
+                    .Where(s => s.SharedUserId.Equals(currentUser) && s.ToDoTaskId.Equals(request.Id))
+                    .SingleOrDefaultAsync(cancellationToken);
+
+                if (shared != null)
+                {
+                    // If the user is not allowed to change the IsCompleted, check if it's being changed.
+                    if (!shared.CanComplete)
+                    {
+                        if (request.IsCompleted != entity.IsCompleted)
+                        {
+                            return Result<ToDoTask>.Error("You are not allowed to make changes to this task.");
+                        }
+                    }
+                    // Check if anything other than IsCompleted is being changed.
+                    if (!shared.CanEdit)
+                    {
+                        // TODO: Perhaps add an extension method that takes an entity and returns true or false?
+                        if (request.TaskStatus != entity.TaskStatus || request.ToDoListId != entity.ToDoListId ||
+                            request.ForegroundColor != entity.ForegroundColor || request.BackgroundColor != entity.BackgroundColor ||
+                            request.Description != entity.Description || request.DueByDate != entity.DueByDate ||
+                            request.DueByTime != entity.DueByTime)
+                        {
+                            return Result<ToDoTask>.Error("You are not allowed to make changes to this task.");
+                        }
+                    }
+                }
+                else // There is no share with the current user.
+                {
+                    return Result<ToDoTask>.Error("You are not allowed to make changes to this task.");
+                }
             }
 
             // Everything should be good, try to update
