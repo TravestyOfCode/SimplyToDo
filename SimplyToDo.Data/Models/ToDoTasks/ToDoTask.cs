@@ -1,4 +1,4 @@
-﻿namespace SimplyToDo.Data.Models;
+﻿namespace SimplyToDo.Data.Models.ToDoTasks;
 
 public class ToDoTask
 {
