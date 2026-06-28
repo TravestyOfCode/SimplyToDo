@@ -5,7 +5,7 @@ using SimplyToDo.Data.Models.ToDoTasks;
 
 namespace SimplyToDo.Data.Services.ToDoTasks;
 
-internal class ToDoTaskService(AppDbContext _dbContext, PropertyValidator _propValidator, IUserAccessor _userAccessor, ILogger<ToDoTaskService> _logger) : IUpdateToDoTaskService
+internal class UpdateToDoTaskService(AppDbContext _dbContext, PropertyValidator _propValidator, IUserAccessor _userAccessor, ILogger<UpdateToDoTaskService> _logger) : IUpdateToDoTaskService
 {
     public async Task<Result<ToDoTask>> Save(UpdateToDoTask request, CancellationToken cancellationToken)
     {
