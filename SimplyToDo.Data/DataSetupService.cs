@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using SimplyToDo.Data.Entities;
 using SimplyToDo.Data.Services;
 using SimplyToDo.Data.Services.ToDoTasks;
 

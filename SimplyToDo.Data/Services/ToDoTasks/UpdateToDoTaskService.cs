@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using SimplyToDo.Data.Entities;
 using SimplyToDo.Data.Models;
 using SimplyToDo.Data.Models.ToDoTasks;
 

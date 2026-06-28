@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using SimplyToDo.Data.Entities;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;

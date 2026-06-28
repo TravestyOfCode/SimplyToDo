@@ -3,7 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SimplyToDo.Data;
+using SimplyToDo.Data.Entities;
 
 #nullable disable
 
