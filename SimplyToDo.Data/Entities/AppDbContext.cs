@@ -2,10 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
-using SimplyToDo.Data.Entities;
 using System.IO;
 
-namespace SimplyToDo.Data;
+namespace SimplyToDo.Data.Entities;
 
 internal class AppDbContext : IdentityDbContext<AppUser>
 {
