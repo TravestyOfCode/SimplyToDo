@@ -31,7 +31,7 @@ public static class DataSetupService
         services.AddScoped<IUserAccessor, HttpContextUserAccessor>();
 
         // ToDoTaskServices
-        services.AddScoped<IUpdateToDoTaskService, IUpdateToDoTaskService>();
+        services.AddScoped<IUpdateToDoTaskService, UpdateToDoTaskService>();
 
         return services;
     }
