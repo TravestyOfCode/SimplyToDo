@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using SimplyToDo.Data.Entities;
 using SimplyToDo.Data.Models;
 using SimplyToDo.Data.Models.ToDoTasks;
 
 namespace SimplyToDo.Data.Services.ToDoTasks;
 
-internal class UpdateToDoTaskService(AppDbContext _dbContext, PropertyValidator _propValidator, IUserAccessor _userAccessor, ILogger<UpdateToDoTaskService> _logger) : IUpdateToDoTaskService
+internal class UpdateToDoTaskService(Entities.AppDbContext _dbContext, PropertyValidator _propValidator, IUserAccessor _userAccessor, ILogger<UpdateToDoTaskService> _logger) : IUpdateToDoTaskService
 {
     public async Task<Result<ToDoTask>> Save(UpdateToDoTask request, CancellationToken cancellationToken)
     {
